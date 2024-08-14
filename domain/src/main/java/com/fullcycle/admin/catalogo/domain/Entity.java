@@ -29,6 +29,6 @@ public abstract class Entity<ID extends Identifier> {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return Objects.hash(getId());
     }
 }

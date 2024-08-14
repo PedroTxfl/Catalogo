@@ -5,7 +5,7 @@ import java.time.Instant;
 import com.fullcycle.admin.catalogo.domain.AggregateRoot;
 import com.fullcycle.admin.catalogo.domain.validation.ValidationHandler;
 
-public class Category extends AggregateRoot<CategoryID>{
+public class Category extends AggregateRoot<CategoryID> {
 
     private String name;
 
@@ -44,7 +44,7 @@ public class Category extends AggregateRoot<CategoryID>{
         final var now = Instant.now();
         final var deletedAt = isActive ? null : now;
 
-        return new Category(id, aName, aDescription, isActive, now, now, null);
+        return new Category(id, aName, aDescription, isActive, now, now, deletedAt);
     }
 
 
@@ -79,9 +79,10 @@ public class Category extends AggregateRoot<CategoryID>{
         } else {
             deactivate();
         }
+        this.updatedAt = Instant.now();
         this.name = aName;
         this.description = aDescription;
-        this.updatedAt = Instant.now();
+
         return this;
     }
 
